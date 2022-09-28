@@ -30,11 +30,11 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
       - name: Build
-        run: yarn build
+        run: yarn docs:build
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v2
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} ## GitHub 密钥 ACCESS_TOKEN 是在第二步Settings的Secrets中新增时定义的Name,要保持一致
           BASE_BRANCH: main # The branch the action should deploy from.
           BRANCH: blog_site # The branch the action should deploy to.
-          FOLDER: dist # The folder the action should deploy.
+          FOLDER: docs/.vitepress/dist # The folder the action should deploy.
